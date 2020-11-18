@@ -65,9 +65,13 @@ export default function HomeScreen(props) {
     return (
         <View style={styles.container}>
             <Header
-                leftComponent={{ icon: 'menu', color: '#fff' }}
-                centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-                rightComponent={{ icon: 'home', color: '#fff' }}
+                leftComponent={{ icon: 'menu', color: '#AB445C' }}
+                centerComponent={{ text: 'I Love You', style: { color: '#E39FAF' } }}
+                rightComponent={{ icon: 'home', color: '#AB445C' }}
+                containerStyle={{
+                    backgroundColor: '#661327',
+                    justifyContent: 'space-around',
+                }}
             />
             <View style={styles.formContainer}>
                 <TextInput

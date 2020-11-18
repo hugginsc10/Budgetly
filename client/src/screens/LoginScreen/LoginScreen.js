@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TextInput, TouchableOpacity, View, Button } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import { firebase } from '../../firebase/config'
-
+import { FacebookSignIn} from '../RegistrationScreen/RegistrationScreen'
 
 export default function LoginScreen({navigation}) {
     const [email, setEmail] = useState('')
@@ -12,7 +12,7 @@ export default function LoginScreen({navigation}) {
     const onFooterLinkPress = () => {
         navigation.navigate('Registration')
     }
-
+   
     const onLoginPress = () => {
         firebase
             .auth()
@@ -73,6 +73,7 @@ export default function LoginScreen({navigation}) {
                     onPress={() => onLoginPress()}>
                     <Text style={styles.buttonTitle}>Log in</Text>
                 </TouchableOpacity>
+                <FacebookSignIn/>
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Don't have an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Sign up</Text></Text>
                 </View>

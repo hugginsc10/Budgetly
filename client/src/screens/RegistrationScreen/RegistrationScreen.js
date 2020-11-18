@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TextInput, TouchableOpacity, View, Button} from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import { firebase } from '../../firebase/config'
-// import auth from '@react-native-firebase/auth';
+import auth from '@firebase/auth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 export default function RegistrationScreen({navigation}) {

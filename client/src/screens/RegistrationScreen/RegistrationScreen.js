@@ -3,7 +3,8 @@ import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styles from './styles';
 import { firebase } from '../../firebase/config'
-
+// import auth from '@react-native-firebase/auth';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 export default function RegistrationScreen({navigation}) {
     const [fullName, setFullName] = useState('')
@@ -14,7 +15,16 @@ export default function RegistrationScreen({navigation}) {
     const onFooterLinkPress = () => {
         navigation.navigate('Login')
     }
-
+    const FacebookSignIn = () => {
+        return (
+          <Button
+            title="Facebook Sign-In"
+            onPress={() => onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'))}
+          />
+        );
+      }
+    
+    
     const onRegisterPress = () => {
         if (password !== confirmPassword) {
             alert("Passwords don't match.")
@@ -45,7 +55,22 @@ export default function RegistrationScreen({navigation}) {
                 alert(error)
         });
     }
+    async function onFacebookButtonPress() {
+        const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+      
+        if (result.isCancelled) {
+          throw 'User cancelled the login process';
+        }
+        const data = await AccessToken.getCurrentAccessToken();
+      
+        if (!data) {
+          throw 'Something went wrong obtaining access token';
+        }
 
+        const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+
+        return auth().signInWithCredential(facebookCredential);
+      }
     return (
         <View style={styles.container}>
             <KeyboardAwareScrollView
@@ -98,6 +123,7 @@ export default function RegistrationScreen({navigation}) {
                     onPress={() => onRegisterPress()}>
                     <Text style={styles.buttonTitle}>Create account</Text>
                 </TouchableOpacity>
+                <FacebookSignIn/>
                 <View style={styles.footerView}>
                     <Text style={styles.footerText}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
                 </View>

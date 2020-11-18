@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
-import {Header} from 'react-native-elements'
+import {Header, Icon} from 'react-native-elements'
 
 export default function HomeScreen(props) {
 
@@ -63,16 +63,19 @@ export default function HomeScreen(props) {
     }
 
     return (
-        <View style={styles.container}>
-            <Header
-                leftComponent={{ icon: 'menu', color: '#AB445C' }}
-                centerComponent={{ text: 'I Love You', style: { color: '#E39FAF' } }}
+        <>
+        <View>
+              <Header
+                leftComponent={{ icon: 'menu', color: '#AB445C'}}
+                centerComponent={{ text: 'Budgetly', style: { color: '#E39FAF' } }}
                 rightComponent={{ icon: 'home', color: '#AB445C' }}
                 containerStyle={{
                     backgroundColor: '#661327',
                     justifyContent: 'space-around',
                 }}
             />
+        </View>
+        <View style={styles.container}>
             <View style={styles.formContainer}>
                 <TextInput
                     style={styles.input}
@@ -98,5 +101,6 @@ export default function HomeScreen(props) {
                 </View>
             )}
         </View>
+        </>
     )
 }

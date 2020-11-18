@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> b9c6611ae49e5068674c187a9cf003fcf0390230
 import firebase from 'firebase/app';
 import '@firebase/auth';
 import '@firebase/firestore';

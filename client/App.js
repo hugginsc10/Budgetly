@@ -14,13 +14,6 @@ export default function App() {
 
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
-
-  // if (loading) {	
-  //   return (	
-  //     <></>	
-  //   )	
-  // }
-
   useEffect(() => {
     const usersRef = firebase.firestore().collection('users');
     firebase.auth().onAuthStateChanged(user => {
@@ -41,6 +34,13 @@ export default function App() {
       }
     });
   }, []);
+
+  if (loading) {	
+    return (	
+      <></>	
+    )	
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View, Pressable } from 'react-native'
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 import {Header, Icon} from 'react-native-elements'
-
-export default function HomeScreen(props) {
+import Menu from '../Menu/Menu'
+import {NavigationContainer} from "@react-navigation/native"
+import {createStackNavigator} from "@react-navigation/stack"
+export default function HomeScreen(props, {navigation}) {
 
     const [entityText, setEntityText] = useState('')
     const [entities, setEntities] = useState([])
+    const [menuOpen, setMenuOpen] = useState(false)
 
     const entityRef = firebase.firestore().collection('entities')
     const userID = props.extraData.id
@@ -62,18 +65,23 @@ export default function HomeScreen(props) {
         )
     }
 
+
     return (
         <>
         <View>
+            <Pressable onPress={() => navigation.navigate('Dropdown') } >
               <Header
-                leftComponent={{ icon: 'menu', color: '#AB445C'}}
-                centerComponent={{ text: 'Budgetly', style: { color: '#E39FAF' } }}
+                    
+                    leftComponent={<Icon name='menu' color='#AB445C' />}
+                    // leftComponent={<Menu />}
+                    centerComponent={{ text: 'Budgetly', style: { color: '#E39FAF' } }}
                 rightComponent={{ icon: 'home', color: '#AB445C' }}
                 containerStyle={{
                     backgroundColor: '#661327',
                     justifyContent: 'space-around',
                 }}
             />
+                </Pressable>
         </View>
         <View style={styles.container}>
             <View style={styles.formContainer}>

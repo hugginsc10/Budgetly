@@ -3,17 +3,20 @@ import { FlatList, Keyboard, Text, TextInput, TouchableOpacity, View, Pressable 
 import styles from './styles';
 import { firebase } from '../../firebase/config'
 import {Header, Icon} from 'react-native-elements'
-import Menu from '../Menu/Menu'
-import {NavigationContainer} from "@react-navigation/native"
+import Menu from '../MenuScreen/MenuScreen'
+import {NavigationContainer, useNavigation} from "@react-navigation/native"
 import {createStackNavigator} from "@react-navigation/stack"
-export default function HomeScreen(props, {navigation}) {
+import { render } from 'react-dom';
+
+export default function HomeScreen(props) {
 
     const [entityText, setEntityText] = useState('')
     const [entities, setEntities] = useState([])
     const [menuOpen, setMenuOpen] = useState(false)
 
     const entityRef = firebase.firestore().collection('entities')
-    const userID = props.extraData.id
+    const userID = props.extraData.id;
+    const navigation  = useNavigation();
 
     useEffect(() => {
         entityRef
@@ -65,14 +68,15 @@ export default function HomeScreen(props, {navigation}) {
         )
     }
 
+    // const apple = () => {
+    //     navigation.navigate('Menu')
+    // }
 
     return (
         <>
         <View>
-            <Pressable onPress={() => navigation.navigate('Dropdown') } >
               <Header
-                    
-                    leftComponent={<Icon name='menu' color='#AB445C' />}
+                    leftComponent={<Icon name='menu' color='#AB445C' onPress={()=>navigation.navigate('Home',{screen: 'Menu'})} />}
                     // leftComponent={<Menu />}
                     centerComponent={{ text: 'Budgetly', style: { color: '#E39FAF' } }}
                 rightComponent={{ icon: 'home', color: '#AB445C' }}
@@ -81,7 +85,6 @@ export default function HomeScreen(props, {navigation}) {
                     justifyContent: 'space-around',
                 }}
             />
-                </Pressable>
         </View>
         <View style={styles.container}>
             <View style={styles.formContainer}>

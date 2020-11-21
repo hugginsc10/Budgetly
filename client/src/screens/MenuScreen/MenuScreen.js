@@ -7,7 +7,7 @@ import { onPress} from 'react-native'
 // import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
-export default function Menu() {
+const MenuScreen = ({navigation})=> {
 
     const list = [
         {
@@ -35,7 +35,7 @@ export default function Menu() {
 
     
 
-    const Dropdown = () => {
+const Dropdown = () => {
         return (
         list.map((item, i) => (
             <TouchableOpacity >
@@ -57,3 +57,6 @@ return (
     </View >
 )
 }
+
+
+export default MenuScreen;

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { LoginScreen, HomeScreen, RegistrationScreen, 
-Menu, Expenses, Income, Goals, Dash } from './src/screens'
+MenuScreen, Expenses, Income, Goals, Dash } from './src/screens'
 import {decode, encode} from 'base-64'
 import { firebase } from './src/firebase/config'
 if (!global.btoa) {  global.btoa = encode }
@@ -46,16 +46,16 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         { user ? (
-          <Stack.Screen name="Home">
-            {props => <HomeScreen {...props} extraData={user} />}
+          <Stack.Screen name="Expenses" >
+            {props => <Expenses {...props} extraData={user} />}
           </Stack.Screen>
         ) : (
           <>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Registration" component={RegistrationScreen} />
-              <Stack.Screen name='Menu' component={Menu} />
+              <Stack.Screen name='Menu' component={MenuScreen} />
               <Stack.Screen name='Dash' component={Dash} />
-              <Stack.Screen name='Expenses' component={Expenses} />
+              {/* <Stack.Screen name='Expenses' component={Expenses} /> */}
               <Stack.Screen name='Income' component={Income} />
               <Stack.Screen name='Goals' component={Goals} />
 

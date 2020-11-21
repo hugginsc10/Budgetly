@@ -1,12 +1,44 @@
-import React, {UseState, useEffect} from 'react'
-import {View, Text} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, TextInput, Appbar, ScrollView } from 'react-native'
+// import { TextInput } from 'react-native-gesture-handler'
+import { firebase, db } from '../../firebase/config'
+import { Button } from 'react-native-elements'
 
 
 
-const Income = () => {
+//adding works - needs querying/get for display, needs delete, edit/update +  needs styling desperately
+
+
+const Income = (props) => {
+    const [income, setIncome] = useState('')
+    const [type, setType] = useState('')
+    const [amount, setAmount] = useState(0)
+  
+
+    const userId = props.extraData.id;
+    const ref = db.collection(`users/${userId}/income`)
+
+
+    const addIncome = async () => {
+        await ref.add({
+            type: type,
+            amount: parseInt(amount),
+
+        });
+
+        setType('')
+        setAmount(0)
+    }
+
+
     return (
+
         <View>
-            <Text>Income graph and info goes here </Text>
+            <TextInput label={'type'} value={type} onChangeText={setType} />
+            <TextInput label={'amount'} value={amount} onChangeText={setAmount} />
+
+
+            <Button onPress={() => addIncome()}>Add Expense</Button>
         </View>
     )
 }

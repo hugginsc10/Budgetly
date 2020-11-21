@@ -26,7 +26,7 @@ const Goals = (props) => {
             timeframe: parseInt(timeframe),
 
         });
-       
+        
         setProjectedAmount(0)
         setDescription('')
         setTimeframe(0)

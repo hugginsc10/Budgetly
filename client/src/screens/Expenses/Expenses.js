@@ -28,6 +28,7 @@ const Expenses = (props) => {
             recurring: recurring
 
         });
+        
         setCategory('')
         setName('')
         setAmount(0)

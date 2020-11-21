@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { View, TextInput, Appbar, ScrollView } from 'react-native'
+import { View, Appbar, FlatList } from 'react-native'
 // import { TextInput } from 'react-native-gesture-handler'
 import { firebase, db } from '../../firebase/config'
-import { Button } from 'react-native-elements'
+import { Button, TextInput } from 'react-native-paper'
+import IncomeItems from './IncomeItems'
 
 
 
@@ -13,10 +14,37 @@ const Income = (props) => {
     const [income, setIncome] = useState('')
     const [type, setType] = useState('')
     const [amount, setAmount] = useState(0)
+    const [loading, setLoading] = useState(true)
+    const [incomes, setIncomes] = useState([])
   
 
     const userId = props.extraData.id;
     const ref = db.collection(`users/${userId}/income`)
+
+
+    useEffect(() => {
+        return ref.onSnapshot((querySnapshot)=> {
+            const incomeList = []
+            querySnapshot.forEach(doc => {
+                const {type, amount} = doc.data();
+                incomeList.push({
+                    id: doc.id,
+                    type,
+                    amount
+                });
+            });
+
+            setIncomes(incomeList)
+
+            if(loading) {
+                // setLoading(false)
+                return 
+            }
+        })
+    }, [])
+
+
+
 
 
     const addIncome = async () => {
@@ -31,19 +59,26 @@ const Income = (props) => {
     }
 
     const deleteIncome = async() => {
-        await ref.delete()
+        await ref.remove(`users/${userId}/income`)
     }
 
     return (
-
-        <View>
+<>
+<View>
+            <FlatList
+                    style={{ flex: 1 }}
+                data={incomes}
+                keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => <IncomeItems {...item} style={{ color:'#661327'}} />}
+            />
+            </View>
             <TextInput label={'type'} value={type} onChangeText={setType} />
             <TextInput label={'amount'} value={amount} onChangeText={setAmount} />
 
 
             <Button onPress={() => addIncome()}>Add income</Button>
-            <Button onPress={()=>deleteIncome() } >delede Income info</Button>
-        </View>
+            <Button onPress={()=>deleteIncome() } >delete Income info</Button>
+   </>
     )
 }
 

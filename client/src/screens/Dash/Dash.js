@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 
 
+
+//set querying to all three to pull from collections by userId
+
 const Dash = () => {
     return (
         <View>

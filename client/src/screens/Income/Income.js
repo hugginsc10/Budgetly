@@ -30,6 +30,9 @@ const Income = (props) => {
         setAmount(0)
     }
 
+    const deleteIncome = async() => {
+        await ref.delete()
+    }
 
     return (
 
@@ -38,7 +41,8 @@ const Income = (props) => {
             <TextInput label={'amount'} value={amount} onChangeText={setAmount} />
 
 
-            <Button onPress={() => addIncome()}>Add Expense</Button>
+            <Button onPress={() => addIncome()}>Add income</Button>
+            <Button onPress={()=>deleteIncome() } >delede Income info</Button>
         </View>
     )
 }

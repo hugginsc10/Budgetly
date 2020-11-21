@@ -6,6 +6,9 @@ import {Button} from 'react-native-elements'
 
 
 
+//adding works - needs querying/get for display, needs delete, edit/update +  needs styling desperately
+
+
 const Expenses = (props) => {
     const [expense, setExpense] = useState('')
     const [name, setName] = useState('')
@@ -21,7 +24,7 @@ const Expenses = (props) => {
         await ref.add({
             category: category,
             name: name,
-            amount: amount,
+            amount: parseInt(amount),
             recurring: recurring
 
         });
@@ -37,11 +40,9 @@ const Expenses = (props) => {
         <View>
             <TextInput label={'category '} value={category} onChangeText={setCategory}/>
             <TextInput label={'name '} value={name} onChangeText={setName} />
-            <TextInput label={' amount'} value={amount} onChangeText={setAmount} />
-            <TextInput label={' recurring'} value={recurring} onChangeText={setRecurring} />
+            <TextInput label={'amount'} value={amount} onChangeText={setAmount} />
+            <TextInput label={'recurring'} value={recurring} onChangeText={setRecurring} />
 
-            
-            
             
             <Button onPress={() => addExp()}>Add Expense</Button>
         </View>

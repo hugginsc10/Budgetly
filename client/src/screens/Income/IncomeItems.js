@@ -6,12 +6,6 @@ import { List, View} from 'react-native-paper'
 
 const IncomeItems = ({id, type, amount}) => {
     
-    // const misc = async () => {
-    //     await db()
-    //     .collection(`users/${userId}/income`)
-    //     .doc(id)
-    // }
-
     return (
 
         <List.Item
@@ -24,4 +18,4 @@ const IncomeItems = ({id, type, amount}) => {
 
 
 
-export default React.memo(IncomeItems);
+export default IncomeItems;

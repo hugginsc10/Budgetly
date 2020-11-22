@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { View, Appbar, FlatList } from 'react-native'
+import { View, Appbar, FlatList, ScrollView } from 'react-native'
 // import { TextInput } from 'react-native-gesture-handler'
 import { firebase, db } from '../../firebase/config'
 import { Button, TextInput } from 'react-native-paper'
 import IncomeItems from './IncomeItems'
+// import { ScrollView } from 'react-native-gesture-handler'
 
 
 
@@ -13,7 +14,7 @@ import IncomeItems from './IncomeItems'
 const Income = (props) => {
     const [income, setIncome] = useState('')
     const [type, setType] = useState('')
-    const [amount, setAmount] = useState()
+    const [amount, setAmount] = useState('null')
     const [loading, setLoading] = useState(true)
     const [incomes, setIncomes] = useState([])
   
@@ -52,7 +53,8 @@ const Income = (props) => {
         });
 
         setType('')
-        setAmount()
+        setAmount('')
+        
     }
 
     //the fuck is wrong with this
@@ -64,19 +66,22 @@ const Income = (props) => {
     return (
 <>
 <View>
+    <ScrollView>
             <FlatList
                 style={{ flex: 1 }}
                 data={incomes}
                 keyExtractor={(item) => item.id}
                     renderItem={({ item }) => <IncomeItems {...item} style={{ color:'#661327'}} />}
             />
-            </View>
+               
             <TextInput label={'type'} value={type} onChangeText={setType} />
             <TextInput label={'amount'} value={amount} onChangeText={setAmount} />
 
 
             <Button onPress={() => addIncome()}>Add income</Button>
             <Button onPress={()=>deleteIncome() } >delete Income info</Button>
+                </ScrollView>
+            </View>
    </>
     )
 }

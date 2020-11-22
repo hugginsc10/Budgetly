@@ -15,12 +15,12 @@ export default function HomeScreen(props) {
     const [menuOpen, setMenuOpen] = useState(false)
 
     const entityRef = firebase.firestore().collection('entities')
-    const userID = props.extraData.id;
+    const userId = props.extraData.id;
     const navigation  = useNavigation();
 
     useEffect(() => {
         entityRef
-            .where("authorID", "==", userID)
+            .where("authorID", "==", userId)
             .orderBy('createdAt', 'desc')
             .onSnapshot(
                 querySnapshot => {
@@ -43,7 +43,7 @@ export default function HomeScreen(props) {
             const timestamp = firebase.firestore.FieldValue.serverTimestamp();
             const data = {
                 text: entityText,
-                authorID: userID,
+                authorID: userId,
                 createdAt: timestamp,
             };
             entityRef

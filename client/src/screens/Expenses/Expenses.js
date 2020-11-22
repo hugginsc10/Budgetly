@@ -44,7 +44,7 @@ const Expenses = (props) => {
             }
             
         })
-    })
+    }, [])
 
 
 

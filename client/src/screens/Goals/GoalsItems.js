@@ -9,7 +9,7 @@ const GoalsItems = ({ id, goalName, projectedAmount, description, timeframe }) =
     return (
 
         <List.AccordionGroup>
-            <List.Accordion title={'`Goal Name: ${goalName}`'} id="1" >
+            <List.Accordion title={`Goal Name: ${goalName}`} id="1" >
                 <List.Item title={`Projected Amount: ${projectedAmount}`} />
                 <List.Item title={`Description: $${description}`} />
                 <List.Item title={`Timeframe: ${timeframe}`} />

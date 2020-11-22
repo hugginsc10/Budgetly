@@ -53,7 +53,7 @@ export default function App() {
           <>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Registration" component={RegistrationScreen} />
-              {/* <Stack.Screen name='Menu' component={MenuScreen} /> */}
+              <Stack.Screen name='Menu' component={MenuScreen} />
               {/* <Stack.Screen name='Dash' component={Dash} /> */}
               {/* <Stack.Screen name='Expenses' component={Expenses} /> */}
               {/* <Stack.Screen name='Income' component={Income} /> */}

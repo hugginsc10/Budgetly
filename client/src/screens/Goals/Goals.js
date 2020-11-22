@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { View, TextInput, Appbar, ScrollView } from 'react-native'
+import { View, Appbar, ScrollView, FlatList } from 'react-native'
 // import { TextInput } from 'react-native-gesture-handler'
 import { firebase, db } from '../../firebase/config'
-import { Button } from 'react-native-elements'
+import { Button, TextInput } from 'react-native-elements'
 import GoalsItems from './GoalsItems'
 
 
 
-//adding works - needs querying/get for display, needs delete, edit/update +  needs styling desperately
+//adding works + querying/get for display = needs delete, edit/update +  needs styling desperately
 
 
 const Goals = (props) => {
-    const [goals, setGoals] = useState('')
+    const [goals, setGoals] = useState([])
     const [goalName, setGoalName] = useState('')
     const [projectedAmount, setProjectedAmount] = useState('')
     const [description, setDescription] = useState('')
@@ -22,14 +22,11 @@ const Goals = (props) => {
     const ref = db.collection(`users/${userId}/goals`)
 
 
-
-
-
     useEffect(() => {
         return ref.onSnapshot((querySnapshot) => {
             const goalsList = []
             querySnapshot.forEach(doc => {
-                const {projectedAmount, description, timeframe} = doc.data();
+                const {goalName, projectedAmount, description, timeframe} = doc.data();
                 goalsList.push({
                     id: doc.id,
                     goalName,
@@ -65,7 +62,7 @@ const Goals = (props) => {
 
 
     return (
-
+        <>
         <View>
             <ScrollView>
                 <FlatList
@@ -79,9 +76,10 @@ const Goals = (props) => {
             <TextInput label={'description '} value={description} onChangeText={setDescription} />
             <TextInput label={'time frame'} value={timeframe} onChangeText={setTimeframe} />
 
-            <Button onPress={() => addGoals()}>Add Expense</Button>
+            <Button onPress={() => addGoals()}>Add Goals</Button>
             </ScrollView>
         </View>
+   </>
     )
 }
 

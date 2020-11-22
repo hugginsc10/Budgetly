@@ -7,13 +7,13 @@ import IncomeItems from './IncomeItems'
 
 
 
-//adding works - needs querying/get for display, needs delete, edit/update +  needs styling desperately
+//adding works + querying/get for display = needs delete, edit/update +  needs styling desperately
 
 
 const Income = (props) => {
     const [income, setIncome] = useState('')
     const [type, setType] = useState('')
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState()
     const [loading, setLoading] = useState(true)
     const [incomes, setIncomes] = useState([])
   
@@ -37,14 +37,11 @@ const Income = (props) => {
             setIncomes(incomeList)
 
             if(loading) {
-                // setLoading(false)
+                setLoading(false)
                 return 
             }
         })
     }, [])
-
-
-
 
 
     const addIncome = async () => {
@@ -55,8 +52,10 @@ const Income = (props) => {
         });
 
         setType('')
-        setAmount(0)
+        setAmount()
     }
+
+    //the fuck is wrong with this
 
     const deleteIncome = async() => {
         await ref.remove(`users/${userId}/income`)
@@ -66,7 +65,7 @@ const Income = (props) => {
 <>
 <View>
             <FlatList
-                    style={{ flex: 1 }}
+                style={{ flex: 1 }}
                 data={incomes}
                 keyExtractor={(item) => item.id}
                     renderItem={({ item }) => <IncomeItems {...item} style={{ color:'#661327'}} />}

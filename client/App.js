@@ -46,8 +46,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         { user ? (
-          <Stack.Screen name="Income" >
-            {props => <Income {...props} extraData={user} />}
+          <Stack.Screen name="Expenses" >
+            {props => <Expenses {...props} extraData={user} />}
           </Stack.Screen>
         ) : (
           <>
@@ -56,7 +56,7 @@ export default function App() {
               <Stack.Screen name='Menu' component={MenuScreen} />
               <Stack.Screen name='Dash' component={Dash} />
               <Stack.Screen name='Expenses' component={Expenses} />
-              {/* <Stack.Screen name='Income' component={Income} /> */}
+              <Stack.Screen name='Income' component={Income} />
               <Stack.Screen name='Goals' component={Goals} />
 
           </>

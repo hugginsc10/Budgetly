@@ -46,8 +46,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         { user ? (
-          <Stack.Screen name="Expenses" >
-            {props => <Expenses {...props} extraData={user} />}
+          <Stack.Screen name="Goals" >
+            {props => <Goals {...props} extraData={user} />}
           </Stack.Screen>
         ) : (
           <>

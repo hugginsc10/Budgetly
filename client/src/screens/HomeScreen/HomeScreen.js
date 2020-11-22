@@ -50,22 +50,26 @@ export default function HomeScreen(props) {
         <>
             <Appbar.Header>
                 <Appbar.Action icon='menu' onPress={openMenu} >
-                    <View
-                        style={{
-                            paddingTop: 50,
-                            flexDirection: 'row',
-                            justifyContent: 'center',
-                        }}>
-                        <Menu
-                            visible={visible}
-                            onDismiss={closeMenu}
-                            anchor={<Button onPress={openMenu}>Show menu</Button>}>
-                            <Menu.Item onPress={() => { }} title="Item 1" />
-                            <Menu.Item onPress={() => { }} title="Item 2" />
-                            <Divider />
-                            <Menu.Item onPress={() => { }} title="Item 3" />
-                        </Menu>
-                    </View>
+            {(  visible && 
+                                <MenuScreen />
+            //  <View
+            //             style={{
+            //                 paddingTop: 50,
+            //                 flexDirection: 'row',
+            //                 justifyContent: 'center',
+            //             }}>
+            //             <Menu
+            //                 // visible={visible}
+            //                 // onDismiss={closeMenu}
+            //                 // anchor={<Button onPress={openMenu}>Show menu</Button>}
+            //                 >
+            //                 <Menu.Item onPress={() => { }} title="Item 1" />
+            //                 <Menu.Item onPress={() => { }} title="Item 2" />
+            //                 <Divider />
+            //                 <Menu.Item onPress={() => { }} title="Item 3" />
+            //             </Menu>
+            //         </View>
+                    )}
                 </Appbar.Action>
                 <Appbar.Content title="Title" subtitle="Subtitle" />
                 <Appbar.Action icon="magnify" onPress={_handleSearch} />

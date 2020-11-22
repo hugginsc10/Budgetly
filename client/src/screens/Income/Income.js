@@ -12,7 +12,6 @@ import IncomeItems from './IncomeItems'
 
 
 const Income = (props) => {
-    const [income, setIncome] = useState('')
     const [type, setType] = useState('')
     const [amount, setAmount] = useState('null')
     const [loading, setLoading] = useState(true)

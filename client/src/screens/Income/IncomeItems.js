@@ -9,8 +9,8 @@ const IncomeItems = ({id, type, amount}) => {
     return (
 
         <List.Item
-        title={type}
-        description={amount}  
+        title={`Type: ${type}`}
+        description={`Description: ${description}`}  
         />
     )
 

@@ -3,6 +3,7 @@ import { View, TextInput, Appbar, ScrollView } from 'react-native'
 // import { TextInput } from 'react-native-gesture-handler'
 import { firebase, db } from '../../firebase/config'
 import { Button } from 'react-native-elements'
+import GoalsItems from './GoalsItems'
 
 
 
@@ -11,36 +12,75 @@ import { Button } from 'react-native-elements'
 
 const Goals = (props) => {
     const [goals, setGoals] = useState('')
-    const [projectedAmount, setProjectedAmount] = useState(0)
+    const [goalName, setGoalName] = useState('')
+    const [projectedAmount, setProjectedAmount] = useState('')
     const [description, setDescription] = useState('')
-    const [timeframe, setTimeframe] = useState(0)
+    const [timeframe, setTimeframe] = useState('')
+    const [loading, setLoading] = useState(true)
 
     const userId = props.extraData.id;
     const ref = db.collection(`users/${userId}/goals`)
 
 
+
+
+
+    useEffect(() => {
+        return ref.onSnapshot((querySnapshot) => {
+            const goalsList = []
+            querySnapshot.forEach(doc => {
+                const {projectedAmount, description, timeframe} = doc.data();
+                goalsList.push({
+                    id: doc.id,
+                    goalName,
+                    projectedAmount,
+                    description,
+                    timeframe
+                });
+            });
+
+            setGoals(goalsList)
+
+            if (loading) {
+                setLoading(false)
+                return
+            }
+        })
+    },[])
+
+
     const addGoals = async () => {
         await ref.add({
+            goalName: goalName,
             projectedAmount: parseInt(projectedAmount),
             description: description,
             timeframe: parseInt(timeframe),
 
         });
-        
-        setProjectedAmount(0)
+        setGoalName('')
+        setProjectedAmount('')
         setDescription('')
-        setTimeframe(0)
+        setTimeframe('')
     }
 
 
     return (
 
         <View>
+            <ScrollView>
+                <FlatList
+                    style={{ flex: 1 }}
+                    data={goals}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => <GoalsItems {...item} style={{ color: '#661327' }} />}
+                />
+            <TextInput label={'Goal'} value={goalName} onChangeText={setGoalName} />
             <TextInput label={'projected amount '} value={projectedAmount} onChangeText={setProjectedAmount} />
             <TextInput label={'description '} value={description} onChangeText={setDescription} />
             <TextInput label={'time frame'} value={timeframe} onChangeText={setTimeframe} />
 
             <Button onPress={() => addGoals()}>Add Expense</Button>
+            </ScrollView>
         </View>
     )
 }

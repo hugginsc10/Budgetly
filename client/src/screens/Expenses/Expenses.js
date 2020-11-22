@@ -6,7 +6,7 @@ import {Button, TextInput} from 'react-native-paper'
 import ExpensesItems from './ExpensesItems'
 
 
-//adding works + querying/get for display - needs delete, edit/update +  needs styling desperately
+//adding works + querying/get for display = needs delete, edit/update +  needs styling desperately
 
 
 const Expenses = (props) => {

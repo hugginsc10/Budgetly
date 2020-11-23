@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { View, Appbar, FlatList, ScrollView} from 'react-native'
 // import { TextInput } from 'react-native-gesture-handler'
 import { firebase, db } from '../../firebase/config'
-import {Button, TextInput} from 'react-native-paper'
+import {Button, TextInput, List} from 'react-native-paper'
 import ExpensesItems from './ExpensesItems'
 
 
@@ -72,7 +72,7 @@ const Expenses = (props) => {
                 style={{ flex: 1 }}
                 data={expenses}
                 keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => <ExpensesItems {...item} style={{ color:'#661327'}} />}
+                        renderItem={({ item }) => <ExpensesItems {...item} style={{ color: '#661327' }}/>}
             />
  
             <TextInput label={'category '} value={category} onChangeText={setCategory}/>

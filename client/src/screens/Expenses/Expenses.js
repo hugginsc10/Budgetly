@@ -75,7 +75,7 @@ const Expenses = (props) => {
                         renderItem={({ item }) => <ExpensesItems {...item} style={{ color: '#661327' }}/>}
             />
  
-            <TextInput label={'category '} value={category} onChangeText={setCategory}/>
+            <TextInput label={'category '} editable={true} value={category} onChangeText={setCategory}/>
             <TextInput label={'name '} value={name} onChangeText={setName} />
             <TextInput label={'amount'} value={amount} onChangeText={setAmount} />
             <TextInput label={'recurring'} value={recurring} onChangeText={setRecurring} />

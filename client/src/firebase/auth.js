@@ -3,7 +3,7 @@ import * as Facebook from 'expo-facebook';
 import {View, TouchableOpacity, Text} from 'react-native'
 
 const SignInWithFacebook = () => {
-    const appId = Expo.Constants.manifest.facebook.appId;
+    const appId = Expo.Constants.manifest.extra.facebook.appId;
     const permission = ['public_profile', 'email'];
     firebase.auth().onAuthStateChanged((user) => {
         if (user) 
@@ -11,7 +11,7 @@ const SignInWithFacebook = () => {
         else 
             console.log('Not logged in')
        });
-       const handleAuth = async () => {
+    const handleAuth = async () => {
     try {
         await Facebook.initializeAsync(appId);
         const { type, token } = await Facebook.logInWithReadPermissionsAsync({

@@ -1,6 +1,7 @@
 import firebase from './config';
 import * as Facebook from 'expo-facebook';
 import {View, TouchableOpacity, Text} from 'react-native'
+
 const SignInWithFacebook = () => {
     const appId = Expo.Constants.manifest.facebook.appId;
     const permission = ['public_profile', 'email'];
@@ -25,8 +26,6 @@ const SignInWithFacebook = () => {
             .catch((error) => {
                 console.log('Error occurred ', error)
             });
-        } else {
-              // type === 'cancel'
         }
     } catch ({ message }) {
         alert(`Facebook Login Error: ${message}`);

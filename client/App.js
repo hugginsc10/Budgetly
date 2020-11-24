@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 export default function App() {
 
   const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState('')
   useEffect(() => {
     const usersRef = firebase.firestore().collection('users');
     firebase.auth().onAuthStateChanged(user => {
@@ -31,7 +31,7 @@ export default function App() {
             setLoading(false)
           });
       } else {
-        setLoading(false)
+        // setLoading(false)
       }
     });
   }, []);

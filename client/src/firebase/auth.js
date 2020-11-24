@@ -1,4 +1,4 @@
-import firebase from './config';
+import {firebase} from './config';
 import * as Facebook from 'expo-facebook';
 import {View, TouchableOpacity, Text} from 'react-native'
 

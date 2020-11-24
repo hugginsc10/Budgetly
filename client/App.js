@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { LoginScreen, HomeScreen, RegistrationScreen, 
 MenuScreen, Expenses, Income, Goals, Dash } from './src/screens'
 import {decode, encode} from 'base-64'
-import { firebase } from './src/firebase/config'
+import { firebase, db } from './src/firebase/config'
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 
@@ -15,6 +15,9 @@ export default function App() {
 
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState('')
+
+
+
   useEffect(() => {
     const usersRef = firebase.firestore().collection('users');
     firebase.auth().onAuthStateChanged(user => {
@@ -30,8 +33,6 @@ export default function App() {
           .catch((error) => {
             setLoading(false)
           });
-      } else {
-        // setLoading(false)
       }
     });
   }, []);

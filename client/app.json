@@ -3,12 +3,17 @@
     "name": "Budgetly",
     "slug": "Budgetly",
     "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFFFFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -19,18 +24,47 @@
     "ios": {
       "bundleIdentifier": "org.name.budgetly",
       "buildNumber": "1.0.0",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": true
     },
     "android": {
       "package": "org.name.budgetly",
       "versionCode": 1,
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
+      "config": {
+      "firebase": {
+        "apiKey": "AIzaSyANfbdUCPJ4Ksg_0I1-X6uviVHfapyi4Aw",
+        "authDomain": "budgetly-7d20e.firebaseapp.com",
+        "databaseURL": "https://budgetly-7d20e.firebaseio.com",
+        "projectId": "budgetly-7d20e",
+        "storageBucket": "budgetly-7d20e.appspot.com",
+        "messagingSenderId": "839435537712",
+        "appId": "1:839435537712:web:427dcb6e8fdeed05ae4cf5",
+        "measurementId": "G-FXMGVTKQD2"
+      }
+      },
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "firebase": {
+        "apiKey": "AIzaSyANfbdUCPJ4Ksg_0I1-X6uviVHfapyi4Aw",
+        "authDomain": "budgetly-7d20e.firebaseapp.com",
+        "databaseURL": "https://budgetly-7d20e.firebaseio.com",
+        "projectId": "budgetly-7d20e",
+        "storageBucket": "budgetly-7d20e.appspot.com",
+        "messagingSenderId": "839435537712",
+        "appId": "1:839435537712:web:427dcb6e8fdeed05ae4cf5",
+        "measurementId": "G-FXMGVTKQD2"
+      }
+    },
+    "facebook": {
+      "appId": "366487881104051"
     }
   }
 }

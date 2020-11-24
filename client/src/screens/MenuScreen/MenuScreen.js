@@ -10,7 +10,7 @@ import { Menu } from 'react-native-paper'
 
 const MenuScreen = ()=> {
 
-      const [visible, setVisible] = React.useState(false);
+    const [visible, setVisible] = useState(false);
 
     const openMenu = () => setVisible(true);
 

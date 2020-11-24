@@ -1,5 +1,6 @@
 export { default as LoginScreen } from './LoginScreen/LoginScreen'
 export { default as MenuScreen } from './MenuScreen/MenuScreen'
+export { default as Logout } from './Logout/Logout'
 export { default as HomeScreen } from './HomeScreen/HomeScreen'
 export { default as RegistrationScreen } from './RegistrationScreen/RegistrationScreen'
 export {default as Dash} from './Dash/Dash'

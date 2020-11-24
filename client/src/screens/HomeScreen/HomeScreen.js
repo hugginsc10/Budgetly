@@ -8,9 +8,10 @@ import {NavigationContainer, useNavigation} from "@react-navigation/native"
 import {createStackNavigator} from "@react-navigation/stack"
 import { render } from 'react-dom';
 import {Appbar, Menu, Divider, Provider, Button} from 'react-native-paper'
+import Logout from '../Logout/Logout'
 
-export default function HomeScreen(props) {
-    const userId = props.extraData.id;
+export default function HomeScreen(props, {user}) {
+    // const userId = props.extraData.id;
     const [visible, setVisible] = React.useState(false);
     
     const openMenu = () => setVisible(true);
@@ -32,10 +33,10 @@ export default function HomeScreen(props) {
                         visible={visible}
                         onDismiss={closeMenu}
                         anchor={<Button onPress={openMenu}>Show menu</Button>}>
-                        <Menu.Item onPress={() => { }} title="Item 1" />
-                        <Menu.Item onPress={() => { }} title="Item 2" />
+                        <Menu.Item title="Item 1" />
+                        <Menu.Item title="Item 2" />
                         <Divider />
-                        <Menu.Item onPress={() => { }} title="Item 3" />
+                        <Menu.Item  title="Item 3" />
                     </Menu>
                 </View>
             // </Provider>
@@ -60,10 +61,10 @@ export default function HomeScreen(props) {
                             visible={visible}
                             onDismiss={closeMenu}
                             anchor={<Button onPress={openMenu}>Show menu</Button>}>
-                            <Menu.Item onPress={() => { }} title="Item 1" />
-                            <Menu.Item onPress={() => { }} title="Item 2" />
+                            <Menu.Item  title="Item 1" />
+                            <Menu.Item  title="Item 2" />
                             <Divider />
-                            <Menu.Item onPress={() => { }} title="Item 3" />
+                            <Menu.Item  title="Item 3" />
                         </Menu>
                     </View>
                 </Appbar.Action>

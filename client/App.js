@@ -15,6 +15,7 @@ export default function App() {
 
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
+  
   useEffect(() => {
     const usersRef = firebase.firestore().collection('users');
     firebase.auth().onAuthStateChanged(user => {
@@ -32,6 +33,7 @@ export default function App() {
           });
       } else {
         setLoading(false)
+        // setUser(null)
       }
     });
   }, []);
@@ -48,7 +50,7 @@ export default function App() {
         
         { user ? (
           <Stack.Screen name="Home" >
-            {props => <HomeScreen {...props} extraData={user} />}
+            {props => <HomeScreen {...props} extraData={user} setUser={setUser} />}
           </Stack.Screen>
         ) : (
           <>

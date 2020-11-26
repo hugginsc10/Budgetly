@@ -17,6 +17,7 @@ export default function HomeScreen(props) {
     const openMenu = () => setVisible(true);
     const closeMenu = () => setVisible(false);
 
+    console.log(props)
   
 
     
@@ -50,7 +51,9 @@ export default function HomeScreen(props) {
     return (
         <>
             <Appbar.Header>
-                <Logout userId={userId} setUserId={setUserId} />
+
+                <Logout userId={userId} setUserId={setUserId} user={props.extraData} setUser={props.setUser} />
+
                 <Appbar.Action icon='menu' onPress={openMenu} >
             {/* {(  visible && 
                                 <MenuScreen /> */}

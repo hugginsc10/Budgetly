@@ -5,7 +5,7 @@ import {firebase, db} from '../../firebase/config'
 
 
 
-const Logout = ({userId, setUserId}) => {
+const Logout = ({userId, setUserId, setUser, user}) => {
     
 
 
@@ -13,7 +13,8 @@ const Logout = ({userId, setUserId}) => {
     const signout = async () => {
         await firebase.auth().signOut()
         setUserId(null)
-        console.log(userId)
+        setUser(null)
+        console.log(user)
         return 'apple'
     }
 

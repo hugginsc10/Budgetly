@@ -4,13 +4,13 @@ import { FlatList, Keyboard, Text,TouchableOpacity, View } from 'react-native'
 import { firebase } from '../../firebase/config'
 import {withNavigation} from '@react-navigation/native'
 import { onPress} from 'react-native'
-import { Menu } from 'react-native-paper'
+import { Menu, Button, Provider, Divider } from 'react-native-paper'
 // import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
 const MenuScreen = ()=> {
 
-      const [visible, setVisible] = React.useState(false);
+    const [visible, setVisible] = useState(false);
 
     const openMenu = () => setVisible(true);
 
@@ -31,7 +31,7 @@ const MenuScreen = ()=> {
                     <Menu.Item onPress={() => { }} title="Item 1" />
                     <Menu.Item onPress={() => { }} title="Item 2" />
                     <Divider />
-                    <Menu.Item onPress={() => { }} title="Item 3" />
+                    <Menu.Item icon="logout" onPress={() => { }} title="Log Out" />
                 </Menu>
             </View>
         </Provider>

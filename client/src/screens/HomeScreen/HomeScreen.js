@@ -10,9 +10,9 @@ import { render } from 'react-dom';
 import {Appbar, Menu, Divider, Provider, Button} from 'react-native-paper'
 import Logout from '../Logout/Logout'
 
-export default function HomeScreen(props, {user}) {
+export default function HomeScreen(props) {
     // const userId = props.extraData.id;
-    const [visible, setVisible] = React.useState(false);
+    const [visible, setVisible] = useState(false);
     
     const openMenu = () => setVisible(true);
     const closeMenu = () => setVisible(false);

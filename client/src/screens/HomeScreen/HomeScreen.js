@@ -50,6 +50,7 @@ export default function HomeScreen(props, {user}) {
     return (
         <>
             <Appbar.Header>
+                <Logout />
                 <Appbar.Action icon='menu' onPress={openMenu} >
                     <View
                         style={{

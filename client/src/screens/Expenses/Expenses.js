@@ -4,6 +4,7 @@ import { View, Appbar, FlatList, ScrollView} from 'react-native'
 import { firebase, db } from '../../firebase/config'
 import {Button, TextInput} from 'react-native-paper'
 import ExpensesItems from './ExpensesItems'
+import Logout from '../Logout/Logout'
 
 
 //adding works + querying/get for display = needs delete, edit/update +  needs styling desperately
@@ -83,6 +84,7 @@ const Expenses = (props) => {
             
            
             <Button onPress={() => addExp()}>Add Expense</Button>
+            <Logout />
                 </ScrollView>
             </View>
        </>

@@ -10,15 +10,13 @@ const Logout = ({userId, setUserId, setUser, user}) => {
 
 
 
-    const signout = async () => {
+    const signout = async (user) => {
         await firebase.auth().signOut()
         setUserId(null)
         setUser(null)
         console.log(user)
         return 'apple'
     }
-
-
 
 
 return (

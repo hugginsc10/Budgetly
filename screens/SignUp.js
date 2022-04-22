@@ -2,11 +2,12 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, TextInput, Alert, ScrollView, Keyboard, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import NavBar from './NavBar';
-
+import { registration } from '../api/firebase';
+import { GoogleHandler } from '../api/GoogleHandler';
 
 const SignUp = ({navigation}) => {
     const [firstName, setFirstName] = useState('')
-    const[lastName, setLastName] = useState('')
+    const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -90,6 +91,8 @@ const SignUp = ({navigation}) => {
                 >
                     <Text style={styles.buttonText} > Sign Up</Text>
                 </TouchableOpacity>
+              
+                <GoogleHandler />
 
 
                     <Text style={styles.text}  >

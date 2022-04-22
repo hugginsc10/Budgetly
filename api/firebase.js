@@ -1,8 +1,7 @@
 import {initializeApp} from 'firebase/app'
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
-import 'firebase/firestore'
+import {getFirestore, collection, getDocs} from 'firebase/firestore'
 
-const app = initializeApp(firebaseConfig)
 
 const config = {
     apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -11,9 +10,13 @@ const config = {
     databaseURL: process.env.REACT_APP_FIREBASE_DATABASEURL,
     messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
     projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+    measurementID: process.env.REACT_APP_FIREBASE_MEASUREMENTID
   }
-const auth = getAuth()
+
+const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
+const auth = getAuth(app)
 
 export async function registration(email, password, firstName, lastName) {
     await app.auth().createUserWithEmailAndPassword(email,password);

@@ -1,28 +1,25 @@
 import {initializeApp} from 'firebase/app'
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider} from 'firebase/auth';
 import {getFirestore, collection, getDoc, setDoc} from 'firebase/firestore'
+import Constants from 'expo-constants';
 
 
 // const firebaseConfig = {
-//     apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-//     appId: process.env.REACT_APP_FIREBASE_APPID,
-//     authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
-//     databaseURL: process.env.REACT_APP_FIREBASE_DATABASEURL,
-//     messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
-//     projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-//     storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
-//     measurementID: process.env.REACT_APP_FIREBASE_MEASUREMENTID
-//   }
+//     apiKey: "AIzaSyA7xHBz78-8OUWMZCQ3J4ArBS_rzNRP4Tc",
+//     authDomain: "budgetly-301bd.firebaseapp.com",
+//     projectId: "budgetly-301bd",
+//     storageBucket: "budgetly-301bd.appspot.com",
+//     messagingSenderId: "173915029572",
+//     appId: "1:173915029572:web:18b43a100e30e91e5ffc11"
+//   };
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyDeWVQmLKrS4H5mc4yBHmHadEWUK969suQ',
-    authDomain: 'budgetly-7d20e.firebaseapp.com',
-    databaseURL: 'budgetly-7d20e.firebaseapp.com',
-    projectId: 'budgetly-7d20e',
-    storageBucket: 'budgetly-7d20e.appspot.com',
-    messagingSenderId: '839435537712',
-    appId: '1:839435537712:web:427dcb6e8fdeed05ae4cf5',
-    measurementId: 'G-FXMGVTKQD2'
+    apiKey: Constants.manifest.extra.apiKey,
+    authDomain: Constants.manifest.extra.authDomain,
+    projectId: Constants.manifest.extra.projectId,
+    storageBucket: Constants.manifest.extra.storageBucket,
+    messagingSenderId: Constants.manifest.extra.messagingSenderId,
+    appId: Constants.manifest.extra.appId
 }
 
 const app = initializeApp(firebaseConfig)

@@ -26,8 +26,6 @@ const Dashboard = ({navigation}) => {
             setFirstName(userData.fullName)
         }
         getUserInfo()
-        expenseArray()
-        goalsArray()
         
     }, [])
 

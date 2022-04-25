@@ -7,9 +7,6 @@ import {collection, getDocs} from 'firebase/firestore'
 import { registration } from '../api/firebase';
 
 const Dashboard = ({navigation}) => {
-    console.log('hello')
-    console.log(auth)
-    console.log(registration)
     const userId = auth.user.uid
     const expenseRef = db.collection(`users/${userId}/expenses`)
     const goalRef = db.collection(`users/${userId}/goals`)
@@ -18,11 +15,13 @@ const Dashboard = ({navigation}) => {
     const [firstName, setFirstName] = useState('')
     const [expenses, setExpenses] = useState([])
     const [goals, setGoals] = useState([])
-
+    console.log(currentUser)
     useEffect(() => {
         const getUserInfo = async () => {
             const doc = await getDocs(collection(db, 'users', user.userId))
+            console.log(doc, 'doc')
             const userData = doc.data()
+            console.log(userData)
             setFirstName(userData.fullName)
         }
         getUserInfo()

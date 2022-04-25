@@ -1,8 +1,7 @@
-import {initializeApp} from 'firebase/app'
+import {initializeApp} from 'firebase/app';
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider} from 'firebase/auth';
-import {getFirestore, collection, getDoc, setDoc} from 'firebase/firestore'
+import {getFirestore, collection, getDoc, setDoc} from 'firebase/firestore';
 import Constants from 'expo-constants';
-
 
 // const firebaseConfig = {
 //     apiKey: "AIzaSyA7xHBz78-8OUWMZCQ3J4ArBS_rzNRP4Tc",
@@ -12,7 +11,7 @@ import Constants from 'expo-constants';
 //     messagingSenderId: "173915029572",
 //     appId: "1:173915029572:web:18b43a100e30e91e5ffc11"
 //   };
-
+const [isSignedIn, setIsSignedIn] = useState(false)
 const firebaseConfig = {
     apiKey: Constants.manifest.extra.apiKey,
     authDomain: Constants.manifest.extra.authDomain,
@@ -29,7 +28,7 @@ export const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account'});
 
 export async function registration(email, password, firstName, lastName) {
-    const currentUser = await createUserWithEmailAndPassword(auth, email, password);
+    const currentUser = await createUserWithEmailAndPassword(auth, email, password)
 
     await setDoc(collection(db, 'users', currentUser.uid), 
     {email: currentUser.email,

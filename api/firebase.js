@@ -1,6 +1,21 @@
 import {initializeApp} from 'firebase/app';
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider} from 'firebase/auth';
-import {getFirestore, collection, getDoc, setDoc, addDoc} from 'firebase/firestore';
+import {
+    GoogleAuthProvider,
+    getAuth,
+    signInWithPopup,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    sendPasswordResetEmail,
+    signOut,
+    } from "firebase/auth";
+import {
+    getFirestore,       
+    query,
+    getDocs,
+    collection,
+    where,
+    addDoc,
+    } from "firebase/firestore";
 import Constants from 'expo-constants';
 
 // const firebaseConfig = {
@@ -25,25 +40,65 @@ const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 export const auth = getAuth(app)
 
-export async function registration(email, password, firstName, lastName) {
-    const currentUser = await createUserWithEmailAndPassword(auth, email, password)
-    console.log(currentUser)
-    const userRef = await addDoc(collection(db, 'users'), { 
-        email: currentUser.email,
-        lastName: lastName,
-        firstName: firstName
-    })
-    console.log("Document written with ID: ", userRef.id )
+const googleProvider = new GoogleAuthProvider();
+export const signInWithGoogle = async () => {
+  try {
+    const res = await signInWithPopup(auth, googleProvider);
+    const user = res.user;
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const docs = await getDocs(q);
+    if (docs.docs.length === 0) {
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        authProvider: "google",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+  }
 }
+export const registration = async (email, password, firstName, lastName) => {
+        try {
+          const res = await createUserWithEmailAndPassword(auth, email, password);
+          const user = res.user;
+          await addDoc(collection(db, "users"), {
+            uid: user.uid,
+            firstName,
+            lastName,
+            authProvider: "local",
+            email,
+          });
+        } catch (err) {
+          console.error(err);
+          alert(err.message);
+        }
+      };
+      
 
 export async function signIn(email, password) {
     await signInWithEmailAndPassword(auth, email, password)
-}
-
-signOut(auth)
-    .then(() => {
-        console.log('logged out');
+    .then((userCredential) => {
+        const currentUser = userCredential.user
+        console.log(currentUser)
     })
     .catch((error) => {
-        console.log(error)
+        const errorCode = error.code;
+        const errorMessage = error.message;
     })
+}
+export const sendPasswordReset = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Password reset link sent!");
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
+
+export const logout = () => {
+    signOut(auth);
+}

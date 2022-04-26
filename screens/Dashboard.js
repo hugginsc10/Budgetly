@@ -2,14 +2,13 @@ import React, {useState, useEffect} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {Appbar, Icon, List, Drawer, Button} from 'react-native-paper';
 import NavBar from '../screens/NavBar'
-import {db, auth} from '../api/firebase'
+import {db, auth } from '../api/firebase'
 import {collection, getDocs} from 'firebase/firestore'
 import { registration } from '../api/firebase';
 
 const Dashboard = ({navigation}) => {
-    const userId = auth.user.uid
+    const userId = 
     const expenseRef = db.collection(`users/${userId}/expenses`)
-    const goalRef = db.collection(`users/${userId}/goals`)
 
    
     const [firstName, setFirstName] = useState('')
@@ -18,7 +17,7 @@ const Dashboard = ({navigation}) => {
     console.log(currentUser)
     useEffect(() => {
         const getUserInfo = async () => {
-            const doc = await getDocs(collection(db, 'users', user.userId))
+            const doc = await getDocs(collection(db, 'users', user.uid))
             console.log(doc, 'doc')
             const userData = doc.data()
             console.log(userData)

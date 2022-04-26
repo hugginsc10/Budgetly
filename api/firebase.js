@@ -1,6 +1,6 @@
 import {initializeApp} from 'firebase/app';
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider} from 'firebase/auth';
-import {getFirestore, collection, getDoc, setDoc} from 'firebase/firestore';
+import {getFirestore, collection, getDoc, setDoc, addDoc} from 'firebase/firestore';
 import Constants from 'expo-constants';
 
 // const firebaseConfig = {
@@ -28,12 +28,12 @@ export const auth = getAuth(app)
 export async function registration(email, password, firstName, lastName) {
     const currentUser = await createUserWithEmailAndPassword(auth, email, password)
     console.log(currentUser)
-    await setDoc(collection(db, 'users', currentUser.uid), 
-    {email: currentUser.email,
-    lastName: lastName,
-    firstName: firstName
+    const userRef = await addDoc(collection(db, 'users'), { 
+        email: currentUser.email,
+        lastName: lastName,
+        firstName: firstName
     })
-
+    console.log("Document written with ID: ", userRef.id )
 }
 
 export async function signIn(email, password) {

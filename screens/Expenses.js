@@ -4,6 +4,10 @@ import {TextInput, Button,List, Dialog, Portal, Provider} from 'react-native-pap
 import NavBar from './NavBar'
 import {db} from '../api/firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import UpdateExpense from './UpdateExpense';
+import DeleteExpense from './DeleteExpense';
+import ExpenseGraph from './ExpenseGraph';
+
 
 const Expenses = ({navigation, route}) => {
     const {expenses, userId} = route.params

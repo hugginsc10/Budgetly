@@ -9,7 +9,8 @@ import SignIn from './screens/SignIn';
 import Dashboard from './screens/Dashboard';
 import NavBar from './screens/NavBar';
 import Loading from './screens/Loading';
-
+import Expenses from './screens/Expenses';
+import Income from './screens/Income'
 
 const Stack = createStackNavigator()
 
@@ -23,7 +24,8 @@ export default function App() {
        <Stack.Screen name={'Sign In'} component={SignIn} options={{headerShown: false}} />
        <Stack.Screen name={'Dashboard'} component={Dashboard} options={{headerShown: false}} />
        <Stack.Screen name={'NavBar'} component={NavBar} options={{headerShown: false}} />
-
+       <Stack.Screen name={'Income'} component={Income} options={{headerShown: false}} />
+       <Stack.Screen name={'Expenses'} component={Expenses} options={{headerShown: false}} />
      </Stack.Navigator>
    </NavigationContainer>
   );

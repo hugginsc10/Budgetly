@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {ScrollView, TouchableOpacity, View } from 'react-native'
 import { Button, Dialog, Portal, Provider, TextInput} from 'react-native-paper'
 import firebase from 'firebase/app'
-import {db} from '../api/auth'
+import {db} from '../api/firebase'
 
 
 const UpdateIncome = ({incomeId, type, amount, incomeRef}) => {

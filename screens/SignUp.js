@@ -25,8 +25,8 @@ const SignUp = ({navigation}) => {
         registration(
             email,
             password,
-            lastName,
-            firstName
+            firstName,
+            lastName
         );
         navigation.navigate('Dashboard');
         emptyForm();

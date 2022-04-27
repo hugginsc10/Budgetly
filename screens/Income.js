@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Appbar, FlatList, ScrollView, StyleSheet } from 'react-native'
 import { Button, TextInput, List, Provider, Dialog, Portal } from 'react-native-paper'
-import {db} from '../api/auth'
+import {db, auth} from '../api/firebase'
 import {doc, getDoc} from 'firebase/firestore'
 import NavBar from './NavBar'
 import DeleteIncome from './DeleteIncome'

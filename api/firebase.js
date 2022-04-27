@@ -15,6 +15,8 @@ import {
     collection,
     where,
     addDoc,
+    doc,
+    setDoc
     } from "firebase/firestore";
 import Constants from 'expo-constants';
 
@@ -39,7 +41,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 export const auth = getAuth(app)
-
 const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
   try {
@@ -64,12 +65,12 @@ export const registration = async (email, password, firstName, lastName) => {
         try {
           const res = await createUserWithEmailAndPassword(auth, email, password);
           const user = res.user;
-          await addDoc(collection(db, "users"), {
-            uid: user.uid,
-            firstName,
-            lastName,
-            authProvider: "local",
-            email,
+          await setDoc(doc(db, "users", user.uid), {
+            // uid: user.uid,
+            firstName: firstName,
+            lastName:lastName,
+            // authProvider: "local",
+            email:user.email
           });
         } catch (err) {
           console.error(err);
@@ -82,7 +83,7 @@ export async function signIn(email, password) {
     await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         const currentUser = userCredential.user
-        console.log(currentUser)
+        console.log(currentUser.uid)
     })
     .catch((error) => {
         const errorCode = error.code;

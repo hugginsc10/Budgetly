@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native'
 import React, {useState, useEffect} from 'react';
 import {Appbar, Icon, Drawer} from 'react-native-paper';
-import { screens } from '../api/navScreens';
+import { screens } from '../api/NavScreens';
 
 
 const NavBar = ({navigation}) => {

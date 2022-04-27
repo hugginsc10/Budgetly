@@ -6,7 +6,6 @@ const screenWidth = Dimensions.get('window').width;
 const randomColor = require('randomcolor');
 
 const ExpenseGraph = ({expenses}) => {
-    console.log(expenses)
     const chartConfig = {
         backgroundGradientFrom: "#3D2247",
         backgroundGradientFromOpacity: 0,

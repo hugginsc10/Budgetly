@@ -3,18 +3,16 @@ import {View, FlatList, ScrollView, StyleSheet } from 'react-native'
 import {TextInput, Button,List, Dialog, Portal, Provider} from 'react-native-paper'
 import NavBar from './NavBar'
 import {db} from '../api/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, collection, addDoc } from 'firebase/firestore';
 import UpdateExpense from './UpdateExpense';
 import DeleteExpense from './DeleteExpense';
 import ExpenseGraph from './ExpenseGraph';
 
 
 const Expenses = ({navigation, route}) => {
-    const {expenses, userId} = route.params
-
-    // const expenseRef = db.collection(`users/${userId}/expenses`)
-    const expenseRef = doc(db, `users/${userId}/expenses` )
-
+    const {userId, expenses} = route.params
+    
+    const expenseRef = doc(db, userId, 'expenses' )
     const[name, setName] = useState('')
     const [amount, setAmount] = useState('')
     const [category, setCategory]=useState('')
@@ -23,20 +21,21 @@ const Expenses = ({navigation, route}) => {
 
     const addExpense = async () => {
         setVisible(false)
-
-        await expenseRef.add({
+        await addDoc(collection(db,'users', `${userId}`, 'expenses'),{
             category: category,
             name: name,
             amount: parseInt(amount),   
             recurring: recurring
 
         });
-
+      
         setCategory('')
         setName('')
         setAmount('')
         setRecurring('')
     }
+
+    
 
     const DisplayExpenses = ({ expenseId, name, amount, category, recurring }) => {
        
@@ -68,16 +67,16 @@ const Expenses = ({navigation, route}) => {
             </View>
         )
     }
-
+console.log(expenses, 'expenses')
     return (
         
         <ScrollView 
         showsHorizontalScrollIndicator={true}
-        style={styles.expenseAccordian}
+        style={styles.expenseAccordion}
         >
                <NavBar navigation={navigation} />
 
-               {/* <ExpenseGraph  expenses={expenses}/> */}
+              {expenses && <ExpenseGraph  expenses={expenses}/>}
            
                <FlatList 
                style={{ flex: 1}}
@@ -119,7 +118,7 @@ const styles = StyleSheet.create({
    modal: {
        marginTop: "60%"
    },
-   expenseAccordian: { 
+   expenseAccordion: { 
        
    },
    modalContainer: {
